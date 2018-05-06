@@ -5,17 +5,26 @@ import Form from './components/Form/Form';
 import Header from './components/Header/Header';
 import axios from 'axios';
 
-import {HashRouter, Route, Switch} from 'react-router-dom';
-import About from './About';
-import {Link} from 'react-router-dom';
-
 class App extends Component {
   constructor(){
     super()
     this.state={
-      inventoryList: []
+      inventoryList: [],
+      imgurl: '',
+      name: '',
+      price: 0,
+      product_id: 0,
+      addingProduct: true
     }
     this.componentDidMount = this.componentDidMount.bind(this)
+    this.addProduct = this.addProduct.bind(this)
+    this.handleUrlInput = this.handleUrlInput.bind(this)
+    this.handleNameInput = this.handleNameInput.bind(this)
+    this.handlePriceInput = this.handlePriceInput.bind(this)
+    this.handleProduct_Id = this.handleProduct_Id.bind(this)
+    this.editProduct = this.editProduct.bind(this)
+    this.cancelButton = this.cancelButton.bind(this)
+    this.handleAddProduct = this.handleAddProduct.bind(this)
   }
 
   componentDidMount(){
@@ -24,26 +33,75 @@ class App extends Component {
     })
   }
 
+  handleAddProduct(){
+    this.setState({addingProduct: !this.state.addingProduct})
+  }
+
+  handleUrlInput(value){
+    this.setState({imgurl: value})
+  }
+
+  handleNameInput(value){
+    this.setState({name: value})
+  }
+
+  handlePriceInput(value){
+    this.setState({price: Number(value)})
+  }
+
+  handleProduct_Id(value){
+    this.setState({product_id: value})
+  }
+
+  addProduct(){
+    const {imgurl, name, price} = this.state
+    axios.post('/api/product', {imgurl, name, price}).then(res => {
+      this.componentDidMount() 
+      this.setState({imgurl: '', name: '', price: 0})
+    })
+}
+
+cancelButton(){
+  this.setState({imgurl: '', name: '', price: 0})
+}
+
+editProduct(param1, param2, param3, param4){
+    this.setState({
+      imgurl: param1,
+      name: param2,
+      price: param3,
+      product_id: param4,
+      addingProduct: false
+    })
+}
 
   render() {
-    console.log(this.state.inventoryList)
     return (
       <div className="App">
       <Header />
+      <div className='dashFormBox'>
         <Dashboard inventoryList={this.state.inventoryList}
                     comDidMountFn={this.componentDidMount}
+                    editProduct={this.editProduct}
+                    handleProduct_Id={this.handleProduct_Id}
         />
-        <Form comDidMountFn={this.componentDidMount}/>
-      </div>
-      );
-      <HashRouter>
-        <div>
-          <Switch>
-            <Route path='/' component={App} />
-            <Route path='/about' component={About} />
-          </Switch>
+        <Form comDidMountFn={this.componentDidMount}
+              addProductFn={this.addProduct}
+              handleNameInput={this.handleNameInput}
+              handlePriceInput={this.handlePriceInput}
+              handleUrlInput={this.handleUrlInput}
+              imgurl={this.state.imgurl}
+              name={this.state.name}
+              price={this.state.price}
+              addingProduct={this.state.addingProduct}
+              cancelButton={this.cancelButton}
+              product_id={this.state.product_id}
+              handleAddProduct={this.handleAddProduct}
+        />
         </div>
-      </HashRouter>
+        </div>
+      );
+      
   }
 }
 

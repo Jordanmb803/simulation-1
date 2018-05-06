@@ -2,6 +2,6 @@ import React from 'react';
 
 export default function Header(){
     return(
-        <div className='header'><img src='/shelfie_icon.png' alt='Logo'/><h1>SHELFIE</h1></div>
+        <div className='header'><img className='logo' src="" alt='logo' width="70px;" height="70px" /><h1>SHELFIE</h1></div>
     )
 }

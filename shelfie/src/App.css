@@ -1,10 +1,119 @@
+html{
+  width: 100%;
+  height: 100vh;
+}
+
+.logo{
+  background-image: url("shelfie_icon.png");
+  background-size: 75px;
+}
+
 .header{
   display: flex;
   justify-content: flex-start;
   position: relative;
   background: #AB2A19;
+  color: white;
 }
 
+.App{
+  width: 100%;
+  height: 100vh;
+}
 
+.logo {
+  margin: 20px;
+}
 
+.dashFormBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px 75px 0 75px;
+}
 
+.DashBoard{
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  width: 43vw;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.Form{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #3AD886;
+  width: 30vw;
+  height: 60%;
+  position: relative;
+  padding: 15px;
+  border-radius: 2%;
+}
+
+.product{
+  width: 100%;
+  background: #D34735;
+  margin: 10px 0px;
+  position: relative;
+  border-radius: 4%;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  padding: 7px;
+}
+
+#redBs{
+  background: #D34735;
+  width: 75px;
+  height: 50px;
+  border-radius: 15%;
+}
+
+#greenBs{
+  background: #3AD886;
+  width: 75px;
+  height: 50px;
+  border-radius: 15%;
+}
+
+.product{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 25vh;
+}
+
+.proImg {
+  height: 80%;
+  width: 45%;
+  margin: auto;
+}
+
+.proInfo{
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.defaultImg {
+  margin: auto;
+}
+
+h3{
+  margin: 7px 0px;
+}
+
+input{
+  margin: 7px 0px;
+}
